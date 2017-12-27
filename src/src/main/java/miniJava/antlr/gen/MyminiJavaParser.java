@@ -20,8 +20,8 @@ public class MyminiJavaParser extends Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
-		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
-		IDENTIFIER=32, INTEGER_LITERAL=33, Binary_operators=34;
+		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, IDENTIFIER=31, 
+		INTEGER_LITERAL=32, Binary_operators=33, WS=34, LineComment=35, MultiLineComment=36;
 	public static final int
 		RULE_goal = 0, RULE_mainClass = 1, RULE_classDeclaration = 2, RULE_varDeclaration = 3, 
 		RULE_methodDeclaration = 4, RULE_formalList = 5, RULE_formalRest = 6, 
@@ -37,14 +37,13 @@ public class MyminiJavaParser extends Parser {
 		null, "'class'", "'{'", "'public'", "'static'", "'void'", "'main'", "'('", 
 		"'String'", "'['", "']'", "')'", "'}'", "'extends'", "';'", "','", "'return'", 
 		"'int'", "'boolean'", "'if'", "'else'", "'while'", "'System.out.println'", 
-		"'='", "'&&'", "'.'", "'length'", "'true'", "'false'", "'this'", "'new'", 
-		"'!'"
+		"'='", "'.'", "'length'", "'true'", "'false'", "'this'", "'new'", "'!'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, "IDENTIFIER", "INTEGER_LITERAL", 
-		"Binary_operators"
+		null, null, null, null, null, null, null, "IDENTIFIER", "INTEGER_LITERAL", 
+		"Binary_operators", "WS", "LineComment", "MultiLineComment"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -887,6 +886,7 @@ public class MyminiJavaParser extends Parser {
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
+		public TerminalNode Binary_operators() { return getToken(MyminiJavaParser.Binary_operators, 0); }
 		public ExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -929,13 +929,13 @@ public class MyminiJavaParser extends Parser {
 			case 2:
 				{
 				setState(182);
-				match(T__26);
+				match(T__25);
 				}
 				break;
 			case 3:
 				{
 				setState(183);
-				match(T__27);
+				match(T__26);
 				}
 				break;
 			case 4:
@@ -947,13 +947,13 @@ public class MyminiJavaParser extends Parser {
 			case 5:
 				{
 				setState(185);
-				match(T__28);
+				match(T__27);
 				}
 				break;
 			case 6:
 				{
 				setState(186);
-				match(T__29);
+				match(T__28);
 				setState(187);
 				match(T__16);
 				setState(188);
@@ -967,7 +967,7 @@ public class MyminiJavaParser extends Parser {
 			case 7:
 				{
 				setState(192);
-				match(T__29);
+				match(T__28);
 				setState(193);
 				identifier();
 				setState(194);
@@ -979,7 +979,7 @@ public class MyminiJavaParser extends Parser {
 			case 8:
 				{
 				setState(197);
-				match(T__30);
+				match(T__29);
 				setState(198);
 				expression(2);
 				}
@@ -1014,7 +1014,7 @@ public class MyminiJavaParser extends Parser {
 						setState(205);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
 						setState(206);
-						match(T__23);
+						match(Binary_operators);
 						setState(207);
 						expression(14);
 						}
@@ -1040,9 +1040,9 @@ public class MyminiJavaParser extends Parser {
 						setState(213);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
 						setState(214);
-						match(T__24);
+						match(T__23);
 						setState(215);
-						match(T__25);
+						match(T__24);
 						}
 						break;
 					case 4:
@@ -1052,7 +1052,7 @@ public class MyminiJavaParser extends Parser {
 						setState(216);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
 						setState(217);
-						match(T__24);
+						match(T__23);
 						setState(218);
 						identifier();
 						setState(219);
@@ -1060,7 +1060,7 @@ public class MyminiJavaParser extends Parser {
 						setState(228);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << IDENTIFIER) | (1L << INTEGER_LITERAL))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__29) | (1L << IDENTIFIER) | (1L << INTEGER_LITERAL))) != 0)) {
 							{
 							setState(220);
 							expression(0);
@@ -1177,11 +1177,11 @@ public class MyminiJavaParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__6:
+			case T__25:
 			case T__26:
 			case T__27:
 			case T__28:
 			case T__29:
-			case T__30:
 			case IDENTIFIER:
 			case INTEGER_LITERAL:
 				enterOuterAlt(_localctx, 1);
@@ -1287,7 +1287,7 @@ public class MyminiJavaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3$\u00ff\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&\u00ff\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\7\2\37\n\2\f\2\16\2\"\13\2\3\2\3"+
 		"\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3"+
@@ -1344,33 +1344,33 @@ public class MyminiJavaParser extends Parser {
 		"\7\31\2\2\u00b1\u00b2\5\24\13\2\u00b2\u00b3\7\20\2\2\u00b3\u00b5\3\2\2"+
 		"\2\u00b4\u008b\3\2\2\2\u00b4\u0093\3\2\2\2\u00b4\u009b\3\2\2\2\u00b4\u00a1"+
 		"\3\2\2\2\u00b4\u00a7\3\2\2\2\u00b4\u00ac\3\2\2\2\u00b5\23\3\2\2\2\u00b6"+
-		"\u00b7\b\13\1\2\u00b7\u00ce\7#\2\2\u00b8\u00ce\7\35\2\2\u00b9\u00ce\7"+
-		"\36\2\2\u00ba\u00ce\5\26\f\2\u00bb\u00ce\7\37\2\2\u00bc\u00bd\7 \2\2\u00bd"+
-		"\u00be\7\23\2\2\u00be\u00bf\7\13\2\2\u00bf\u00c0\5\24\13\2\u00c0\u00c1"+
-		"\7\f\2\2\u00c1\u00ce\3\2\2\2\u00c2\u00c3\7 \2\2\u00c3\u00c4\5\26\f\2\u00c4"+
-		"\u00c5\7\t\2\2\u00c5\u00c6\7\r\2\2\u00c6\u00ce\3\2\2\2\u00c7\u00c8\7!"+
-		"\2\2\u00c8\u00ce\5\24\13\4\u00c9\u00ca\7\t\2\2\u00ca\u00cb\5\24\13\2\u00cb"+
-		"\u00cc\7\r\2\2\u00cc\u00ce\3\2\2\2\u00cd\u00b6\3\2\2\2\u00cd\u00b8\3\2"+
-		"\2\2\u00cd\u00b9\3\2\2\2\u00cd\u00ba\3\2\2\2\u00cd\u00bb\3\2\2\2\u00cd"+
-		"\u00bc\3\2\2\2\u00cd\u00c2\3\2\2\2\u00cd\u00c7\3\2\2\2\u00cd\u00c9\3\2"+
-		"\2\2\u00ce\u00ec\3\2\2\2\u00cf\u00d0\f\17\2\2\u00d0\u00d1\7\32\2\2\u00d1"+
-		"\u00eb\5\24\13\20\u00d2\u00d3\f\16\2\2\u00d3\u00d4\7\13\2\2\u00d4\u00d5"+
-		"\5\24\13\2\u00d5\u00d6\7\f\2\2\u00d6\u00eb\3\2\2\2\u00d7\u00d8\f\r\2\2"+
-		"\u00d8\u00d9\7\33\2\2\u00d9\u00eb\7\34\2\2\u00da\u00db\f\f\2\2\u00db\u00dc"+
-		"\7\33\2\2\u00dc\u00dd\5\26\f\2\u00dd\u00e6\7\t\2\2\u00de\u00e3\5\24\13"+
-		"\2\u00df\u00e0\7\21\2\2\u00e0\u00e2\5\24\13\2\u00e1\u00df\3\2\2\2\u00e2"+
-		"\u00e5\3\2\2\2\u00e3\u00e1\3\2\2\2\u00e3\u00e4\3\2\2\2\u00e4\u00e7\3\2"+
-		"\2\2\u00e5\u00e3\3\2\2\2\u00e6\u00de\3\2\2\2\u00e6\u00e7\3\2\2\2\u00e7"+
-		"\u00e8\3\2\2\2\u00e8\u00e9\7\r\2\2\u00e9\u00eb\3\2\2\2\u00ea\u00cf\3\2"+
-		"\2\2\u00ea\u00d2\3\2\2\2\u00ea\u00d7\3\2\2\2\u00ea\u00da\3\2\2\2\u00eb"+
-		"\u00ee\3\2\2\2\u00ec\u00ea\3\2\2\2\u00ec\u00ed\3\2\2\2\u00ed\25\3\2\2"+
-		"\2\u00ee\u00ec\3\2\2\2\u00ef\u00f0\7\"\2\2\u00f0\27\3\2\2\2\u00f1\u00f5"+
-		"\5\24\13\2\u00f2\u00f4\5\32\16\2\u00f3\u00f2\3\2\2\2\u00f4\u00f7\3\2\2"+
-		"\2\u00f5\u00f3\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00fa\3\2\2\2\u00f7\u00f5"+
-		"\3\2\2\2\u00f8\u00fa\3\2\2\2\u00f9\u00f1\3\2\2\2\u00f9\u00f8\3\2\2\2\u00fa"+
-		"\31\3\2\2\2\u00fb\u00fc\7\21\2\2\u00fc\u00fd\5\24\13\2\u00fd\33\3\2\2"+
-		"\2\26 ;AG\\_fly}\u0089\u008f\u00b4\u00cd\u00e3\u00e6\u00ea\u00ec\u00f5"+
-		"\u00f9";
+		"\u00b7\b\13\1\2\u00b7\u00ce\7\"\2\2\u00b8\u00ce\7\34\2\2\u00b9\u00ce\7"+
+		"\35\2\2\u00ba\u00ce\5\26\f\2\u00bb\u00ce\7\36\2\2\u00bc\u00bd\7\37\2\2"+
+		"\u00bd\u00be\7\23\2\2\u00be\u00bf\7\13\2\2\u00bf\u00c0\5\24\13\2\u00c0"+
+		"\u00c1\7\f\2\2\u00c1\u00ce\3\2\2\2\u00c2\u00c3\7\37\2\2\u00c3\u00c4\5"+
+		"\26\f\2\u00c4\u00c5\7\t\2\2\u00c5\u00c6\7\r\2\2\u00c6\u00ce\3\2\2\2\u00c7"+
+		"\u00c8\7 \2\2\u00c8\u00ce\5\24\13\4\u00c9\u00ca\7\t\2\2\u00ca\u00cb\5"+
+		"\24\13\2\u00cb\u00cc\7\r\2\2\u00cc\u00ce\3\2\2\2\u00cd\u00b6\3\2\2\2\u00cd"+
+		"\u00b8\3\2\2\2\u00cd\u00b9\3\2\2\2\u00cd\u00ba\3\2\2\2\u00cd\u00bb\3\2"+
+		"\2\2\u00cd\u00bc\3\2\2\2\u00cd\u00c2\3\2\2\2\u00cd\u00c7\3\2\2\2\u00cd"+
+		"\u00c9\3\2\2\2\u00ce\u00ec\3\2\2\2\u00cf\u00d0\f\17\2\2\u00d0\u00d1\7"+
+		"#\2\2\u00d1\u00eb\5\24\13\20\u00d2\u00d3\f\16\2\2\u00d3\u00d4\7\13\2\2"+
+		"\u00d4\u00d5\5\24\13\2\u00d5\u00d6\7\f\2\2\u00d6\u00eb\3\2\2\2\u00d7\u00d8"+
+		"\f\r\2\2\u00d8\u00d9\7\32\2\2\u00d9\u00eb\7\33\2\2\u00da\u00db\f\f\2\2"+
+		"\u00db\u00dc\7\32\2\2\u00dc\u00dd\5\26\f\2\u00dd\u00e6\7\t\2\2\u00de\u00e3"+
+		"\5\24\13\2\u00df\u00e0\7\21\2\2\u00e0\u00e2\5\24\13\2\u00e1\u00df\3\2"+
+		"\2\2\u00e2\u00e5\3\2\2\2\u00e3\u00e1\3\2\2\2\u00e3\u00e4\3\2\2\2\u00e4"+
+		"\u00e7\3\2\2\2\u00e5\u00e3\3\2\2\2\u00e6\u00de\3\2\2\2\u00e6\u00e7\3\2"+
+		"\2\2\u00e7\u00e8\3\2\2\2\u00e8\u00e9\7\r\2\2\u00e9\u00eb\3\2\2\2\u00ea"+
+		"\u00cf\3\2\2\2\u00ea\u00d2\3\2\2\2\u00ea\u00d7\3\2\2\2\u00ea\u00da\3\2"+
+		"\2\2\u00eb\u00ee\3\2\2\2\u00ec\u00ea\3\2\2\2\u00ec\u00ed\3\2\2\2\u00ed"+
+		"\25\3\2\2\2\u00ee\u00ec\3\2\2\2\u00ef\u00f0\7!\2\2\u00f0\27\3\2\2\2\u00f1"+
+		"\u00f5\5\24\13\2\u00f2\u00f4\5\32\16\2\u00f3\u00f2\3\2\2\2\u00f4\u00f7"+
+		"\3\2\2\2\u00f5\u00f3\3\2\2\2\u00f5\u00f6\3\2\2\2\u00f6\u00fa\3\2\2\2\u00f7"+
+		"\u00f5\3\2\2\2\u00f8\u00fa\3\2\2\2\u00f9\u00f1\3\2\2\2\u00f9\u00f8\3\2"+
+		"\2\2\u00fa\31\3\2\2\2\u00fb\u00fc\7\21\2\2\u00fc\u00fd\5\24\13\2\u00fd"+
+		"\33\3\2\2\2\26 ;AG\\_fly}\u0089\u008f\u00b4\u00cd\u00e3\u00e6\u00ea\u00ec"+
+		"\u00f5\u00f9";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -1,5 +1,18 @@
 grammar MyminiJava;
 
+
+/* Lexer Rules */
+IDENTIFIER  :  [a-zA-Z] [a-zA-Z0-9_]* ;
+INTEGER_LITERAL :   [0-9]+  ;
+Binary_operators    :   '&&' | '<' | '+' | '-' | '*'    ;
+WS  :   [ \t\r\n]+ -> skip  ;
+
+LineComment    :   '//' ~('\r' | '\n')* ->  channel(HIDDEN)  ;
+MultiLineComment    :   '/*' (MultiLineComment|.)*? '*/'  -> channel(HIDDEN)    ;
+
+
+
+/* Parser Rules */
 goal    :   mainClass ( classDeclaration )* EOF;
 mainClass   :   'class' identifier '{' 'public' 'static' 'void' 'main' '(' 'String' '[' ']' identifier ')' '{' statement '}' '}';
 classDeclaration    :   'class' identifier ( 'extends' identifier )? '{' ( varDeclaration )* ( methodDeclaration )* '}';
@@ -26,7 +39,7 @@ statement   :   '{' ( statement )* '}'
             |   identifier '[' expression ']' '=' expression ';'
             ;
 
-expression  :   expression  '&&'  expression
+expression  :   expression  Binary_operators  expression
             |   expression '[' expression ']'
             |   expression '.' 'length'
             |   expression '.' identifier '(' ( expression ( ',' expression )* )? ')'
@@ -52,7 +65,3 @@ expRest :   ',' expression  ;
 
 
 
-/* Lexical Issues */
-IDENTIFIER  :  [a-zA-Z] [a-zA-Z0-9_]+ ;
-INTEGER_LITERAL :   [0-9]+  ;
-Binary_operators    :   '&&' | '<' | '+' | '-' | '*'    ;

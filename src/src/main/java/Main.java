@@ -9,7 +9,6 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import miniJava.antlr.gen.MyminiJavaLexer;
 import miniJava.antlr.gen.MyminiJavaParser;
-import miniJava.antlr.MyminiJavaASTVisitor;
 import miniJava.antlr.ASTtree;
 
 import java.io.IOException;
@@ -58,10 +57,6 @@ public class Main {
         MyminiJavaASTVisitor ASTvisitor = new MyminiJavaASTVisitor();
         ASTtree.ASTtreeNode root = ASTvisitor.visit(tree);
         root.printNode();
-
-
-        // print LISP-style tree
-        System.out.println(tree.toStringTree(parser));
 
 
 

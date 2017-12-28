@@ -19,49 +19,45 @@ classDeclaration    :   'class' identifier ( 'extends' identifier )? '{' ( varDe
 varDeclaration  :   type identifier ';';
 methodDeclaration   :   'public' type identifier '(' ( type identifier ( ',' type identifier )* )? ')' '{' ( varDeclaration )* ( statement )* 'return' expression ';' '}';
 
-formalList  :   type identifier (formalRest)*
+formalList  :   type identifier (',' type identifier)*
             |
             ;
 
-formalRest  :   ',' type identifier ;
-
-type    :   'int' '[' ']'
-        |   'boolean'
-        |   'int'
-        |   identifier
+type    :   'int' '[' ']'   # arrayType
+        |   'boolean'       # booleanType
+        |   'int'           # intType
+        |   identifier      # idType
         ;
 
-statement   :   '{' ( statement )* '}'
-            |   'if' '(' expression ')' statement 'else' statement
-            |   'while' '(' expression ')' statement
-            |   'System.out.println' '(' expression ')' ';'
-            |   identifier '=' expression ';'
-            |   identifier '[' expression ']' '=' expression ';'
+statement   :   '{' ( statement )* '}'                                # blockStat
+            |   'if' '(' expression ')' statement 'else' statement      # ifStat
+            |   'while' '(' expression ')' statement                    # whileStat
+            |   'System.out.println' '(' expression ')' ';'             # printStat
+            |   identifier '=' expression ';'                           # assignStat
+            |   identifier '[' expression ']' '=' expression ';'        # arrayStat
             ;
 
-expression  :   expression  Binary_operators  expression
-            |   expression '[' expression ']'
-            |   expression '.' 'length'
-            |   expression '.' identifier '(' ( expression ( ',' expression )* )? ')'
-            |   INTEGER_LITERAL
-            |   'true'
-            |   'false'
-            |   identifier
-            |   'this'
-            |   'new' 'int' '[' expression ']'
-            |   'new' identifier '(' ')'
-            |   '!' expression
-            |   '(' expression ')'
+expression  :   expression  Binary_operators  expression    # binaryExpr
+            |   expression '[' expression ']'               # arrayExpr
+            |   expression '.' 'length'                     # exprlen
+            |   expression '.' identifier '(' ( expression ( ',' expression )* )? ')'   # getmember
+            |   INTEGER_LITERAL        # numberExpr
+            |   'true'                  # trueExpr
+            |   'false'                 # falseExpr
+            |   identifier              # idExpr
+            |   'this'                  # thisExpr
+            |   'new' 'int' '[' expression ']'  # newarrayExpr
+            |   'new' identifier '(' ')'        # newExpr
+            |   '!' expression                  # notExpr
+            |   '(' expression ')'              # innerExpr
             ;
 
 
 identifier  :   IDENTIFIER    ;
 
-expList :   expression  (expRest)*
+expList :   expression  (',' expression)*
         |
         ;
-
-expRest :   ',' expression  ;
 
 
 

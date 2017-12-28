@@ -75,13 +75,13 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	public ASTtree.ASTtreeNode visitStatement(MyminiJavaParser.StatementContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	public ASTtree.ASTtreeNode visitExpression(MyminiJavaParser.ExpressionContext ctx) { return visitChildren(ctx); }
+
+
+	public ASTtree.ASTtreeNode visitExpression(MyminiJavaParser.ExpressionContext ctx) {
+
+	    return visitChildren(ctx);
+
+	}
 	/**
 	 * {@inheritDoc}
 	 *

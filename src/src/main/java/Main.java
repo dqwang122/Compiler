@@ -53,10 +53,10 @@ public class Main {
         MyminiJavaParser parser = new MyminiJavaParser(tokens);
 
         // begin parsing at goal rule
-        ParseTree tree = parser.identifier();
+        ParseTree tree = parser.expression();
         MyminiJavaASTVisitor ASTvisitor = new MyminiJavaASTVisitor();
         ASTtree.ASTtreeNode root = ASTvisitor.visit(tree);
-        root.printNode();
+        System.out.println(root.printNode());
 
 
 
@@ -65,6 +65,6 @@ public class Main {
    public static void main(String [] args) throws IOException{
 //        String filename = "examples/Factorial.java";
 //        TestExample(filename);
-       run("abc");
+       run("abc+das+dsa");
    }
 }

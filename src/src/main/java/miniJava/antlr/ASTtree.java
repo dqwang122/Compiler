@@ -8,15 +8,27 @@ public class ASTtree {
         public abstract String printNode();
     };
 
-    public abstract static class TypeNode extends ASTtreeNode {
+    public static class TypeNode extends ASTtreeNode {
+        @Override
+        public String printNode() {
+            return "";
+        }
 
     };
 
-    public abstract static class StatementNode extends ASTtreeNode {
+    public static class StatementNode extends ASTtreeNode {
+        @Override
+        public String printNode() {
+            return "";
+        }
 
     };
 
-    public abstract static class ExpressionNode extends StatementNode {
+    public static class ExpressionNode extends StatementNode {
+        @Override
+        public String printNode() {
+            return "";
+        }
 
     };
 
@@ -28,7 +40,7 @@ public class ASTtree {
 
         @Override
         public String printNode() {
-            return "Identifier:("+ s +')';
+            return "Identifier:"+s;
         }
     };
 
@@ -159,7 +171,9 @@ public class ASTtree {
     };
     public static class PlusNode extends BinaryOpNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Plus(" + e1.printNode() + ',' + e2.printNode() + ')';
+        }
 
     };
     public static class MinusNode extends BinaryOpNode {

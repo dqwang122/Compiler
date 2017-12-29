@@ -201,7 +201,16 @@ public class ASTtree {
         IdentifierNode i;
         List<ExpressionNode> el;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            String ret =  "Call(" + e.printNode() + ',' + i.printNode();
+            StringBuilder builder = new StringBuilder(ret);
+            for(ExpressionNode enode : el){
+                builder.append(',');
+                builder.append(enode.printNode());
+            }
+            builder.append(")");
+            return builder.toString();
+        }
     };
 
     public static class IntegerLiteralNode extends ExpressionNode {
@@ -232,8 +241,13 @@ public class ASTtree {
 
     public static class IdentifierExpNode extends ExpressionNode {
         String s;
+        IdentifierExpNode(String str){
+            s = str;
+        }
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Expression(" + "Identifier:" + s + ')';
+        }
     };
 
     public static class ThisNode extends ExpressionNode {
@@ -247,19 +261,25 @@ public class ASTtree {
     public static class NewArrayNode extends ExpressionNode {
         ExpressionNode e;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "NewArray(" + e.printNode() + ')';
+        }
     };
 
     public static class NewObjectNode extends ExpressionNode {
         IdentifierNode i;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "NewObject(" + i.printNode() + ')';
+        }
     };
 
     public static class NotNode extends ExpressionNode {
         ExpressionNode e;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Not(" + e.printNode() + ')';
+        }
     };
 
 };

@@ -81,6 +81,6 @@ public class Main {
    public static void main(String [] args) throws IOException{
 //        String filename = "examples/Factorial.java";
 //        TestExample(filename);
-       run("abc&&dsa+dsad+(132+43)");
+       run("new int [a[b+d]]");
    }
 }

@@ -27,7 +27,9 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 
 	public ASTtree.ASTtreeNode visitIdType(MyminiJavaParser.IdTypeContext ctx) { return visitChildren(ctx); }
 
-	public ASTtree.ASTtreeNode visitBlockStat(MyminiJavaParser.BlockStatContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitBlockStat(MyminiJavaParser.BlockStatContext ctx) {
+	    return visitChildren(ctx);
+	}
 
 	public ASTtree.ASTtreeNode visitIfStat(MyminiJavaParser.IfStatContext ctx) { return visitChildren(ctx); }
 
@@ -39,10 +41,14 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 
 	public ASTtree.ASTtreeNode visitArrayStat(MyminiJavaParser.ArrayStatContext ctx) { return visitChildren(ctx); }
 
-	public ASTtree.ASTtreeNode visitNewExpr(MyminiJavaParser.NewExprContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitNewExpr(MyminiJavaParser.NewExprContext ctx) {
+	    ASTtree.NewObjectNode node = new ASTtree.NewObjectNode();
+	    node.i = (ASTtree.IdentifierNode) visit(ctx.identifier());
+	    return node;
+	}
 
 	public ASTtree.ASTtreeNode visitThisExpr(MyminiJavaParser.ThisExprContext ctx) {
-	    return new ASTtree.FalseNode();
+	    return new ASTtree.ThisNode();
 	}
 
 	public ASTtree.ASTtreeNode visitArrayExpr(MyminiJavaParser.ArrayExprContext ctx) {
@@ -57,10 +63,12 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
         ASTtree.CallNode node = new ASTtree.CallNode();
         node.e = (ASTtree.ExpressionNode) visit(ctx.expression(0));
         node.i = (ASTtree.IdentifierNode) visit(ctx.identifier());
-//        node.el = visit();
+        node.el = new ArrayList<ASTtree.ExpressionNode>();
+        for(int i = 1; i < ctx.expression().size(); i++){
+            node.el.add((ASTtree.ExpressionNode) visit(ctx.expression(i)));
+        }
 
-
-	    return visitChildren(ctx);
+	    return node;
 	}
 
 	public ASTtree.ASTtreeNode visitTrueExpr(MyminiJavaParser.TrueExprContext ctx) {
@@ -102,9 +110,17 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	    return visit(ctx.expression());
 	}
 
-	public ASTtree.ASTtreeNode visitNewarrayExpr(MyminiJavaParser.NewarrayExprContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitNewarrayExpr(MyminiJavaParser.NewarrayExprContext ctx) {
+        ASTtree.NewArrayNode node = new ASTtree.NewArrayNode();
+        node.e = (ASTtree.ExpressionNode) visit(ctx.expression());
+	    return node;
+	}
 
-	public ASTtree.ASTtreeNode visitNotExpr(MyminiJavaParser.NotExprContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitNotExpr(MyminiJavaParser.NotExprContext ctx) {
+	    ASTtree.NotNode node = new ASTtree.NotNode();
+	    node.e = (ASTtree.ExpressionNode) visit(ctx.expression());
+	    return node;
+	}
 
 	public ASTtree.ASTtreeNode visitExprlen(MyminiJavaParser.ExprlenContext ctx) {
 	    ASTtree.ArrayLengthNode node = new ASTtree.ArrayLengthNode();
@@ -113,11 +129,11 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	}
 
 	public ASTtree.ASTtreeNode visitFalseExpr(MyminiJavaParser.FalseExprContext ctx) {
-	    return new ASTtree.TrueNode();
+	    return new ASTtree.FalseNode();
 	}
 
 	public ASTtree.ASTtreeNode visitIdExpr(MyminiJavaParser.IdExprContext ctx) {
-	    return visit(ctx.identifier());
+	    return new ASTtree.IdentifierExpNode(ctx.getText());
 	}
 
 	public ASTtree.ASTtreeNode visitIdentifier(MyminiJavaParser.IdentifierContext ctx) {

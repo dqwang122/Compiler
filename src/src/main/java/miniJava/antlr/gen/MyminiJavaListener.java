@@ -58,16 +58,6 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 */
 	void exitMethodDeclaration(MyminiJavaParser.MethodDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MyminiJavaParser#formalList}.
-	 * @param ctx the parse tree
-	 */
-	void enterFormalList(MyminiJavaParser.FormalListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyminiJavaParser#formalList}.
-	 * @param ctx the parse tree
-	 */
-	void exitFormalList(MyminiJavaParser.FormalListContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code arrayType}
 	 * labeled alternative in {@link MyminiJavaParser#type}.
 	 * @param ctx the parse tree
@@ -224,18 +214,6 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 */
 	void exitArrayExpr(MyminiJavaParser.ArrayExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code getmember}
-	 * labeled alternative in {@link MyminiJavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterGetmember(MyminiJavaParser.GetmemberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code getmember}
-	 * labeled alternative in {@link MyminiJavaParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitGetmember(MyminiJavaParser.GetmemberContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code trueExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.
 	 * @param ctx the parse tree
@@ -332,6 +310,18 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 */
 	void exitFalseExpr(MyminiJavaParser.FalseExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code callExpr}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCallExpr(MyminiJavaParser.CallExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code callExpr}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCallExpr(MyminiJavaParser.CallExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code idExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.
 	 * @param ctx the parse tree
@@ -353,14 +343,4 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIdentifier(MyminiJavaParser.IdentifierContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MyminiJavaParser#expList}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpList(MyminiJavaParser.ExpListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MyminiJavaParser#expList}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpList(MyminiJavaParser.ExpListContext ctx);
 }

@@ -76,18 +76,6 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFormalList(MyminiJavaParser.FormalListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFormalList(MyminiJavaParser.FormalListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterArrayType(MyminiJavaParser.ArrayTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -244,18 +232,6 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGetmember(MyminiJavaParser.GetmemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitGetmember(MyminiJavaParser.GetmemberContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterTrueExpr(MyminiJavaParser.TrueExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -352,6 +328,18 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCallExpr(MyminiJavaParser.CallExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCallExpr(MyminiJavaParser.CallExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIdExpr(MyminiJavaParser.IdExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -371,18 +359,6 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIdentifier(MyminiJavaParser.IdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterExpList(MyminiJavaParser.ExpListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExpList(MyminiJavaParser.ExpListContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

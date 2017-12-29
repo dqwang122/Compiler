@@ -41,12 +41,6 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMethodDeclaration(MyminiJavaParser.MethodDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link MyminiJavaParser#formalList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFormalList(MyminiJavaParser.FormalListContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code arrayType}
 	 * labeled alternative in {@link MyminiJavaParser#type}.
 	 * @param ctx the parse tree
@@ -138,13 +132,6 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArrayExpr(MyminiJavaParser.ArrayExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code getmember}
-	 * labeled alternative in {@link MyminiJavaParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGetmember(MyminiJavaParser.GetmemberContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code trueExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.
 	 * @param ctx the parse tree
@@ -201,6 +188,13 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFalseExpr(MyminiJavaParser.FalseExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code callExpr}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCallExpr(MyminiJavaParser.CallExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code idExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.
 	 * @param ctx the parse tree
@@ -213,10 +207,4 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIdentifier(MyminiJavaParser.IdentifierContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MyminiJavaParser#expList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpList(MyminiJavaParser.ExpListContext ctx);
 }

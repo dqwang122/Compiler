@@ -17,11 +17,8 @@ goal    :   mainClass ( classDeclaration )* EOF;
 mainClass   :   'class' identifier '{' 'public' 'static' 'void' 'main' '(' 'String' '[' ']' identifier ')' '{' statement '}' '}';
 classDeclaration    :   'class' identifier ( 'extends' identifier )? '{' ( varDeclaration )* ( methodDeclaration )* '}';
 varDeclaration  :   type identifier ';';
-methodDeclaration   :   'public' type identifier '(' ( type identifier ( ',' type identifier )* )? ')' '{' ( varDeclaration )* ( statement )* 'return' expression ';' '}';
+methodDeclaration   :   'public' type identifier '(' (type identifier ( ',' type identifier )*)? ')' '{' ( varDeclaration )* ( statement )* 'return' expression ';' '}';
 
-formalList  :   type identifier (',' type identifier)*
-            |
-            ;
 
 type    :   'int' '[' ']'   # arrayType
         |   'boolean'       # booleanType
@@ -40,7 +37,7 @@ statement   :   '{' ( statement )* '}'                                # blockSta
 expression  :   expression  Binary_operators  expression    # binaryExpr
             |   expression '[' expression ']'               # arrayExpr
             |   expression '.' 'length'                     # exprlen
-            |   expression '.' identifier '(' ( expression ( ',' expression )* )? ')'   # getmember
+            |   expression '.' identifier '(' (expression  ( ',' expression )*)? ')'   # callExpr
             |   INTEGER_LITERAL        # numberExpr
             |   'true'                  # trueExpr
             |   'false'                 # falseExpr
@@ -55,9 +52,6 @@ expression  :   expression  Binary_operators  expression    # binaryExpr
 
 identifier  :   IDENTIFIER    ;
 
-expList :   expression  (',' expression)*
-        |
-        ;
 
 
 

@@ -40,17 +40,22 @@ public class Main {
         // print LISP-style tree
         System.out.println(tree.toStringTree(parser));
 
+        // print LISP-style AST
+        MyminiJavaASTVisitor ASTvisitor = new MyminiJavaASTVisitor();
+        ASTtree.ASTtreeNode root = ASTvisitor.visit(tree);
+        System.out.println(root.printNode());
+
         //show AST in GUI
-        JFrame frame = new JFrame("Antlr AST");
-        JPanel panel = new JPanel();
-        TreeViewer viewr = new TreeViewer(Arrays.asList(
-                parser.getRuleNames()),tree);
-        viewr.setScale(1);//scale a little
-        panel.add(viewr);
-        frame.add(panel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000,1000);
-        frame.setVisible(true);
+//        JFrame frame = new JFrame("Antlr AST");
+//        JPanel panel = new JPanel();
+//        TreeViewer viewr = new TreeViewer(Arrays.asList(
+//                parser.getRuleNames()),tree);
+//        viewr.setScale(1);//scale a little
+//        panel.add(viewr);
+//        frame.add(panel);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setSize(1000,1000);
+//        frame.setVisible(true);
 
 
     }
@@ -79,7 +84,7 @@ public class Main {
     }
 
    public static void main(String [] args) throws IOException{
-//        String filename = "examples/Factorial.java";
+//        String filename = "examples/binarysearch.java";
 //        TestExample(filename);
        run("{a = 1; b = 3; System.out.println(a+b); if(a+b) a = 3; else b = 3; while(a<3) b = b+1; a[3]=5;}");
    }

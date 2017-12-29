@@ -41,6 +41,12 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMethodDeclaration(MyminiJavaParser.MethodDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyminiJavaParser#formalList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFormalList(MyminiJavaParser.FormalListContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code arrayType}
 	 * labeled alternative in {@link MyminiJavaParser#type}.
 	 * @param ctx the parse tree

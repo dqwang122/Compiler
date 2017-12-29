@@ -17,8 +17,9 @@ goal    :   mainClass ( classDeclaration )* EOF;
 mainClass   :   'class' identifier '{' 'public' 'static' 'void' 'main' '(' 'String' '[' ']' identifier ')' '{' statement '}' '}';
 classDeclaration    :   'class' identifier ( 'extends' identifier )? '{' ( varDeclaration )* ( methodDeclaration )* '}';
 varDeclaration  :   type identifier ';';
-methodDeclaration   :   'public' type identifier '(' (type identifier ( ',' type identifier )*)? ')' '{' ( varDeclaration )* ( statement )* 'return' expression ';' '}';
+methodDeclaration   :   'public' type identifier '(' (formalList ( ',' formalList )*)? ')' '{' ( varDeclaration )* ( statement )* 'return' expression ';' '}';
 
+formalList  :   type identifier ;
 
 type    :   'int' '[' ']'   # arrayType
         |   'boolean'       # booleanType

@@ -34,14 +34,25 @@ public class ASTtree {
         MainClassNode m;
         List<ClassDeclNode> cl;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            StringBuilder builder  = new StringBuilder("Program(");
+            builder.append(m.printNode()).append(',');
+            for(ClassDeclNode c : cl){
+                builder.append(c.printNode()).append(',');
+            }
+            builder.deleteCharAt(builder.length()-1);
+            builder.append(')');
+            return builder.toString();
+        }
     };
 
     public static class MainClassNode extends ASTtreeNode {
         IdentifierNode i1, i2;
         StatementNode s;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "MainClass(" + i1.printNode() + ',' + i2.printNode() + ',' + s.printNode() + ')';
+        }
     };
 
 
@@ -53,19 +64,48 @@ public class ASTtree {
         List<VarDeclNode> vl;
         List<MethodDeclNode> ml;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            StringBuilder builder = new StringBuilder("ClassDeclExtends(");
+            builder.append(i.printNode()).append(',');
+            for(VarDeclNode v : vl){
+                builder.append(v.printNode()).append(',');
+            }
+            for(MethodDeclNode m : ml){
+                builder.append(m.printNode()).append(',');
+            }
+            builder.deleteCharAt(builder.length()-1);
+            builder.append(')');
+
+            return builder.toString();
+        }
     };
     public static class ClassDeclExtendsNode extends ClassDeclSimpleNode {
         IdentifierNode j;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            StringBuilder builder = new StringBuilder("ClassDeclExtends(");
+            builder.append(i.printNode()).append(',');
+            builder.append(j.printNode()).append(',');
+            for(VarDeclNode v : vl){
+                builder.append(v.printNode()).append(',');
+            }
+            for(MethodDeclNode m : ml){
+                builder.append(m.printNode()).append(',');
+            }
+            builder.deleteCharAt(builder.length()-1);
+            builder.append(')');
+
+            return builder.toString();
+        }
     };
 
     public static class VarDeclNode extends ASTtreeNode {
         TypeNode t;
         IdentifierNode i;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "VarDecl(" + t.printNode() + ',' + i.printNode() + ')';
+        }
     };
 
     public static class MethodDeclNode extends ASTtreeNode {
@@ -76,50 +116,62 @@ public class ASTtree {
         List<StatementNode> sl;
         ExpressionNode e;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            StringBuilder builder = new StringBuilder("MethodDecl(");
+            builder.append(t.printNode()).append(',');
+            builder.append(i.printNode()).append(',');
+            for(FormalNode f : fl){
+                builder.append(f.printNode()).append(',');
+            }
+            for(VarDeclNode v : vl){
+                builder.append(v.printNode()).append(',');
+            }
+            for(StatementNode s : sl){
+                builder.append(s.printNode()).append(',');
+            }
+
+            builder.append(e.printNode()).append(')');
+            return builder.toString();
+        }
     };
 
     public static class FormalNode extends ASTtreeNode {
         TypeNode t;
         IdentifierNode i;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Formal(" + t.printNode() + ',' + i.printNode() + ')';
+        }
     };
 
     public static class IntArrayTypeNode extends TypeNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() { return "IntArrayType"; }
     };
     public static class BooleanTypeNode extends TypeNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() { return "BooleanType"; }
     };
     public static class IntegerTypeNode extends TypeNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() { return "IntegerType"; }
     };
     public static class IdentifierTypeNode extends TypeNode {
         String s;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() { return "IdentifierType"; }
     };
 
     public static class BlockNode extends ASTtreeNode {
         List<StatementNode> sl;
         @Override
         public String printNode() {
-            int start = 1;
             String ret = "Block(";
             StringBuilder builder = new StringBuilder(ret);
             for(StatementNode s : sl) {
-                if(start == 0){
-                    builder.append(',');
-                }
-                else{
-                    start = 0;
-                }
-                builder.append(s.printNode());
+                builder.append(s.printNode()).append(',');
             }
+            builder.deleteCharAt(builder.length()-1);
             builder.append(")");
             return builder.toString();
         }

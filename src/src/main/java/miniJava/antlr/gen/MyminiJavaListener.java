@@ -58,6 +58,16 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 */
 	void exitMethodDeclaration(MyminiJavaParser.MethodDeclarationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyminiJavaParser#formalList}.
+	 * @param ctx the parse tree
+	 */
+	void enterFormalList(MyminiJavaParser.FormalListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyminiJavaParser#formalList}.
+	 * @param ctx the parse tree
+	 */
+	void exitFormalList(MyminiJavaParser.FormalListContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code arrayType}
 	 * labeled alternative in {@link MyminiJavaParser#type}.
 	 * @param ctx the parse tree

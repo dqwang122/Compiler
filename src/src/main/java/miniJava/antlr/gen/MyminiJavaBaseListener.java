@@ -76,6 +76,18 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFormalList(MyminiJavaParser.FormalListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFormalList(MyminiJavaParser.FormalListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterArrayType(MyminiJavaParser.ArrayTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}

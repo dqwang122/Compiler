@@ -69,7 +69,7 @@ public class Main {
         MyminiJavaParser parser = new MyminiJavaParser(tokens);
 
         // begin parsing at goal rule
-        ParseTree tree = parser.expression();
+        ParseTree tree = parser.statement();
         MyminiJavaASTVisitor ASTvisitor = new MyminiJavaASTVisitor();
         ASTtree.ASTtreeNode root = ASTvisitor.visit(tree);
         System.out.println(root.printNode());
@@ -81,6 +81,6 @@ public class Main {
    public static void main(String [] args) throws IOException{
 //        String filename = "examples/Factorial.java";
 //        TestExample(filename);
-       run("new int [a[b+d]]");
+       run("{a = 1; b = 3; System.out.println(a+b); if(a+b) a = 3; else b = 3; while(a<3) b = b+1; a[3]=5;}");
    }
 }

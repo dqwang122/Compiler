@@ -19,7 +19,10 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 
 	public ASTtree.ASTtreeNode visitMethodDeclaration(MyminiJavaParser.MethodDeclarationContext ctx) { return visitChildren(ctx); }
 
-	public ASTtree.ASTtreeNode visitArrayType(MyminiJavaParser.ArrayTypeContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitArrayType(MyminiJavaParser.ArrayTypeContext ctx) {
+
+	    return visitChildren(ctx);
+	}
 
 	public ASTtree.ASTtreeNode visitBooleanType(MyminiJavaParser.BooleanTypeContext ctx) { return visitChildren(ctx); }
 
@@ -28,18 +31,49 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	public ASTtree.ASTtreeNode visitIdType(MyminiJavaParser.IdTypeContext ctx) { return visitChildren(ctx); }
 
 	public ASTtree.ASTtreeNode visitBlockStat(MyminiJavaParser.BlockStatContext ctx) {
-	    return visitChildren(ctx);
+	    ASTtree.BlockNode node = new ASTtree.BlockNode();
+	    node.sl = new ArrayList<ASTtree.StatementNode>();
+	    for(int i = 0; i < ctx.statement().size(); i++){
+	        node.sl.add((ASTtree.StatementNode) visit(ctx.statement(i)));
+        }
+	    return node;
 	}
 
-	public ASTtree.ASTtreeNode visitIfStat(MyminiJavaParser.IfStatContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitIfStat(MyminiJavaParser.IfStatContext ctx) {
+	    ASTtree.IfNode node = new ASTtree.IfNode();
+	    node.e = (ASTtree.ExpressionNode) visit(ctx.expression());
+	    node.s1 = (ASTtree.StatementNode) visit(ctx.statement(0));
+	    node.s2 = (ASTtree.StatementNode) visit(ctx.statement(1));
+	    return node;
+	}
 
-	public ASTtree.ASTtreeNode visitWhileStat(MyminiJavaParser.WhileStatContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitWhileStat(MyminiJavaParser.WhileStatContext ctx) {
+	    ASTtree.WhileNode node = new ASTtree.WhileNode();
+	    node.e = (ASTtree.ExpressionNode) visit(ctx.expression());
+	    node.s = (ASTtree.StatementNode) visit(ctx.statement());
+	    return node;
+	}
 
-	public ASTtree.ASTtreeNode visitPrintStat(MyminiJavaParser.PrintStatContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitPrintStat(MyminiJavaParser.PrintStatContext ctx) {
+	    ASTtree.PrintNode node = new ASTtree.PrintNode();
+	    node.e = (ASTtree.ExpressionNode) visit(ctx.expression());
+	    return node;
+	}
 
-	public ASTtree.ASTtreeNode visitAssignStat(MyminiJavaParser.AssignStatContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitAssignStat(MyminiJavaParser.AssignStatContext ctx) {
+	    ASTtree.AssignNode node = new ASTtree.AssignNode();
+	    node.i = (ASTtree.IdentifierNode) visit(ctx.identifier());
+	    node.e = (ASTtree.ExpressionNode) visit(ctx.expression());
+	    return node;
+	}
 
-	public ASTtree.ASTtreeNode visitArrayStat(MyminiJavaParser.ArrayStatContext ctx) { return visitChildren(ctx); }
+	public ASTtree.ASTtreeNode visitArrayStat(MyminiJavaParser.ArrayStatContext ctx) {
+	    ASTtree.ArrayAssignNode node = new ASTtree.ArrayAssignNode();
+	    node.i = (ASTtree.IdentifierNode) visit(ctx.identifier());
+	    node.e1 = (ASTtree.ExpressionNode) visit(ctx.expression(0));
+	    node.e2 = (ASTtree.ExpressionNode) visit(ctx.expression(1));
+	    return node;
+	}
 
 	public ASTtree.ASTtreeNode visitNewExpr(MyminiJavaParser.NewExprContext ctx) {
 	    ASTtree.NewObjectNode node = new ASTtree.NewObjectNode();

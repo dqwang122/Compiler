@@ -107,37 +107,62 @@ public class ASTtree {
     public static class BlockNode extends ASTtreeNode {
         List<StatementNode> sl;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            int start = 1;
+            String ret = "Block(";
+            StringBuilder builder = new StringBuilder(ret);
+            for(StatementNode s : sl) {
+                if(start == 0){
+                    builder.append(',');
+                }
+                else{
+                    start = 0;
+                }
+                builder.append(s.printNode());
+            }
+            builder.append(")");
+            return builder.toString();
+        }
     };
 
     public static class IfNode extends StatementNode {
         ExpressionNode e;
         StatementNode s1,s2;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "If(" + e.printNode() + ',' + s1.printNode() + ',' + s2.printNode() + ')';
+        }
     };
     public static class WhileNode extends StatementNode {
         ExpressionNode e;
         StatementNode s;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "While(" + e.printNode() + ',' + s.printNode() + ')';
+        }
     };
     public static class PrintNode extends StatementNode {
         ExpressionNode e;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Print(" + e.printNode() + ')';
+        }
     };
     public static class AssignNode extends StatementNode {
         IdentifierNode i;
         ExpressionNode e;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Assign(" + i.printNode() + ',' + e.printNode() + ')';
+        }
     };
     public static class ArrayAssignNode extends StatementNode {
         IdentifierNode i;
         ExpressionNode e1,e2;
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "ArrayAssign(" + i.printNode() + ',' + e1.printNode() + ',' + e2.printNode() + ')';
+        }
     };
 
     public static class BinaryOpNode extends ExpressionNode {

@@ -1,9 +1,15 @@
+import java.io.IOException;
+import java.util.Arrays;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import miniJava.antlr.MyminiJavaASTVisitor;
 import miniJava.antlr.gen.MyminiJavaBaseListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.antlr.v4.gui.TreeViewer;
 
 
 
@@ -11,7 +17,7 @@ import miniJava.antlr.gen.MyminiJavaLexer;
 import miniJava.antlr.gen.MyminiJavaParser;
 import miniJava.antlr.ASTtree;
 
-import java.io.IOException;
+
 
 
 public class Main {
@@ -30,12 +36,22 @@ public class Main {
         // begin parsing at goal rule
         ParseTree tree = parser.goal();
 
+
         // print LISP-style tree
         System.out.println(tree.toStringTree(parser));
 
-        ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(new MyminiJavaBaseListener(), tree);
-        System.out.println();
+        //show AST in GUI
+        JFrame frame = new JFrame("Antlr AST");
+        JPanel panel = new JPanel();
+        TreeViewer viewr = new TreeViewer(Arrays.asList(
+                parser.getRuleNames()),tree);
+        viewr.setScale(1);//scale a little
+        panel.add(viewr);
+        frame.add(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000,1000);
+        frame.setVisible(true);
+
 
     }
 
@@ -65,6 +81,6 @@ public class Main {
    public static void main(String [] args) throws IOException{
 //        String filename = "examples/Factorial.java";
 //        TestExample(filename);
-       run("abc+das+dsa");
+       run("abc&&dsa+dsad+(132+43)");
    }
 }

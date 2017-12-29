@@ -6,166 +6,59 @@ import miniJava.antlr.gen.MyminiJavaParser;
 import org.antlr.v4.runtime.Parser;
 
 public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeNode> {
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitGoal(MyminiJavaParser.GoalContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitMainClass(MyminiJavaParser.MainClassContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitClassDeclaration(MyminiJavaParser.ClassDeclarationContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitVarDeclaration(MyminiJavaParser.VarDeclarationContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitMethodDeclaration(MyminiJavaParser.MethodDeclarationContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitFormalList(MyminiJavaParser.FormalListContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitArrayType(MyminiJavaParser.ArrayTypeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitBooleanType(MyminiJavaParser.BooleanTypeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitIntType(MyminiJavaParser.IntTypeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitIdType(MyminiJavaParser.IdTypeContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitBlockStat(MyminiJavaParser.BlockStatContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitIfStat(MyminiJavaParser.IfStatContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitWhileStat(MyminiJavaParser.WhileStatContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitPrintStat(MyminiJavaParser.PrintStatContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitAssignStat(MyminiJavaParser.AssignStatContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitArrayStat(MyminiJavaParser.ArrayStatContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitNewExpr(MyminiJavaParser.NewExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	public ASTtree.ASTtreeNode visitThisExpr(MyminiJavaParser.ThisExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
+	public ASTtree.ASTtreeNode visitThisExpr(MyminiJavaParser.ThisExprContext ctx) {
+	    return new ASTtree.FalseNode();
+	}
+
 	public ASTtree.ASTtreeNode visitArrayExpr(MyminiJavaParser.ArrayExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	public ASTtree.ASTtreeNode visitGetmember(MyminiJavaParser.GetmemberContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	public ASTtree.ASTtreeNode visitTrueExpr(MyminiJavaParser.TrueExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	public ASTtree.ASTtreeNode visitNumberExpr(MyminiJavaParser.NumberExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
+	public ASTtree.ASTtreeNode visitGetmember(MyminiJavaParser.GetmemberContext ctx) {
+	    return visitChildren(ctx);
+	}
+
+	public ASTtree.ASTtreeNode visitTrueExpr(MyminiJavaParser.TrueExprContext ctx) {
+	    return new ASTtree.TrueNode();
+	}
+
+	public ASTtree.ASTtreeNode visitNumberExpr(MyminiJavaParser.NumberExprContext ctx) {
+	    return new ASTtree.IntegerLiteralNode(Integer.valueOf(ctx.INTEGER_LITERAL().getText()));
+	}
+
 	public ASTtree.ASTtreeNode visitBinaryExpr(MyminiJavaParser.BinaryExprContext ctx) {
 	    ASTtree.BinaryOpNode node = new ASTtree.BinaryOpNode();
 	    //System.out.println(ctx.Binary_operators().toString());
@@ -193,41 +86,22 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
         return node;
 	}
 
-	public ASTtree.ASTtreeNode visitInnerExpr(MyminiJavaParser.InnerExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	public ASTtree.ASTtreeNode visitInnerExpr(MyminiJavaParser.InnerExprContext ctx) {
+	    return visit(ctx.expression());
+	}
+
 	public ASTtree.ASTtreeNode visitNewarrayExpr(MyminiJavaParser.NewarrayExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	public ASTtree.ASTtreeNode visitNotExpr(MyminiJavaParser.NotExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	public ASTtree.ASTtreeNode visitExprlen(MyminiJavaParser.ExprlenContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	public ASTtree.ASTtreeNode visitFalseExpr(MyminiJavaParser.FalseExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
+	public ASTtree.ASTtreeNode visitExprlen(MyminiJavaParser.ExprlenContext ctx) {
+	    return visitChildren(ctx);
+	}
+
+	public ASTtree.ASTtreeNode visitFalseExpr(MyminiJavaParser.FalseExprContext ctx) {
+	    return new ASTtree.TrueNode();
+	}
+
 	public ASTtree.ASTtreeNode visitIdExpr(MyminiJavaParser.IdExprContext ctx) {
 	    return visit(ctx.identifier());
 	}

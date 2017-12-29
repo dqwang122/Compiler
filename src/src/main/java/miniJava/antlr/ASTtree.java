@@ -161,12 +161,16 @@ public class ASTtree {
     };
     public static class AndNode extends BinaryOpNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "And(" + e1.printNode() + ',' + e2.printNode() + ')';
+        }
 
     };
     public static class LessThanNode extends BinaryOpNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "LessThan(" + e1.printNode() + ',' + e2.printNode() + ')';
+        }
 
     };
     public static class PlusNode extends BinaryOpNode {
@@ -178,12 +182,16 @@ public class ASTtree {
     };
     public static class MinusNode extends BinaryOpNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Minus(" + e1.printNode() + ',' + e2.printNode() + ')';
+        }
 
     };
     public static class TimeNode extends BinaryOpNode {
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Time(" + e1.printNode() + ',' + e2.printNode() + ')';
+        }
 
     };
     public static class ArrayLookupNode extends ExpressionNode {
@@ -208,8 +216,13 @@ public class ASTtree {
 
     public static class IntegerLiteralNode extends ExpressionNode {
         int i;
+        IntegerLiteralNode(int num){
+            i = num;
+        }
         @Override
-        public String printNode() { return " "; }
+        public String printNode() {
+            return "Number:" + Integer.toString(i);
+        }
     };
 
     public static class TrueNode extends ExpressionNode {

@@ -8,9 +8,6 @@ public class ASTtree {
         public abstract String printNode();
     };
 
-    public abstract static class TypeNode extends ASTtreeNode {
-    };
-
     public abstract static class StatementNode extends ASTtreeNode {
 
     };
@@ -54,7 +51,6 @@ public class ASTtree {
             return "MainClass(" + i1.printNode() + ',' + i2.printNode() + ',' + s.printNode() + ')';
         }
     };
-
 
     public abstract static class ClassDeclNode extends ASTtreeNode {
 
@@ -144,6 +140,8 @@ public class ASTtree {
         }
     };
 
+    public abstract static class TypeNode extends ASTtreeNode {
+    };
     public static class IntArrayTypeNode extends TypeNode {
         @Override
         public String printNode() { return "IntArrayType"; }
@@ -162,7 +160,7 @@ public class ASTtree {
         public String printNode() { return "IdentifierType"; }
     };
 
-    public static class BlockNode extends ASTtreeNode {
+    public static class BlockNode extends StatementNode {
         List<StatementNode> sl;
         @Override
         public String printNode() {
@@ -176,7 +174,6 @@ public class ASTtree {
             return builder.toString();
         }
     };
-
     public static class IfNode extends StatementNode {
         ExpressionNode e;
         StatementNode s1,s2;
@@ -273,7 +270,7 @@ public class ASTtree {
         }
     };
 
-    public static class CallNode extends StatementNode {
+    public static class CallNode extends ExpressionNode {
         ExpressionNode e;
         IdentifierNode i;
         List<ExpressionNode> el;

@@ -22,6 +22,12 @@
             <version>4.7.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.abego.treelayout</groupId>
+            <artifactId>org.abego.treelayout.core</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>

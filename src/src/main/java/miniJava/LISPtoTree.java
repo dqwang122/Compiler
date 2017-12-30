@@ -4,9 +4,11 @@ import org.abego.treelayout.NodeExtentProvider;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
+
 
 import javax.swing.JComponent;
 
@@ -71,8 +73,8 @@ public class LISPtoTree {
                 double y1 = b1.getCenterY();
                 for (LISPTreeNode child : getChildren(parent)) {
                     Rectangle2D.Double b2 = getBoundsOfNode(child);
-                    g.drawLine((int) x1, (int) y1, (int) b2.getCenterX(),
-                            (int) b2.getCenterY());
+                    g.drawLine((int) x1, (int) (y1+b1.getHeight()/2), (int) b2.getCenterX(),
+                            (int) (b2.getCenterY()-b2.getHeight()/2));
                     paintEdges(g, child);
                 }
             }
@@ -90,10 +92,11 @@ public class LISPtoTree {
 
             // draw the text on top of the box (possibly multiple lines)
             g.setColor(TEXT_COLOR);
+            g.setFont(new Font("TimesRoman", Font.BOLD, 15));
             String[] lines = LISPTreeNode.text.split("\n");
             FontMetrics m = getFontMetrics(getFont());
             int x = (int) box.x + ARC_SIZE / 2;
-            int y = (int) box.y + m.getAscent() + m.getLeading() + 1;
+            int y = (int) box.y + m.getAscent() + m.getLeading() + 3;
             for (int i = 0; i < lines.length; i++) {
                 g.drawString(lines[i], x, y);
                 y += m.getHeight();

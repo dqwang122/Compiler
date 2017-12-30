@@ -32,13 +32,13 @@ public class ASTtree {
         List<ClassDeclNode> cl;
         @Override
         public String printNode() {
-            StringBuilder builder  = new StringBuilder("Program(");
-            builder.append(m.printNode()).append(',');
+            StringBuilder builder  = new StringBuilder("Program ( ");
+            builder.append(m.printNode()).append(" , ");
             for(ClassDeclNode c : cl){
-                builder.append(c.printNode()).append(',');
+                builder.append(c.printNode()).append(" , ");
             }
-            builder.deleteCharAt(builder.length()-1);
-            builder.append(')');
+            builder.delete(builder.length()-3, builder.length());
+            builder.append(" ) ");
             return builder.toString();
         }
     };
@@ -48,7 +48,7 @@ public class ASTtree {
         StatementNode s;
         @Override
         public String printNode() {
-            return "MainClass(" + i1.printNode() + ',' + i2.printNode() + ',' + s.printNode() + ')';
+            return "MainClass ( " + i1.printNode() + " , " + i2.printNode() + " , " + s.printNode() + " ) ";
         }
     };
 
@@ -61,16 +61,16 @@ public class ASTtree {
         List<MethodDeclNode> ml;
         @Override
         public String printNode() {
-            StringBuilder builder = new StringBuilder("ClassDeclExtends(");
-            builder.append(i.printNode()).append(',');
+            StringBuilder builder = new StringBuilder("ClassDeclSimple ( ");
+            builder.append(i.printNode()).append(" , ");
             for(VarDeclNode v : vl){
-                builder.append(v.printNode()).append(',');
+                builder.append(v.printNode()).append(" , ");
             }
             for(MethodDeclNode m : ml){
-                builder.append(m.printNode()).append(',');
+                builder.append(m.printNode()).append(" , ");
             }
-            builder.deleteCharAt(builder.length()-1);
-            builder.append(')');
+            builder.delete(builder.length()-3, builder.length());
+            builder.append(" ) ");
 
             return builder.toString();
         }
@@ -79,17 +79,17 @@ public class ASTtree {
         IdentifierNode j;
         @Override
         public String printNode() {
-            StringBuilder builder = new StringBuilder("ClassDeclExtends(");
-            builder.append(i.printNode()).append(',');
-            builder.append(j.printNode()).append(',');
+            StringBuilder builder = new StringBuilder("ClassDeclExtends ( ");
+            builder.append(i.printNode()).append(" , ");
+            builder.append(j.printNode()).append(" , ");
             for(VarDeclNode v : vl){
-                builder.append(v.printNode()).append(',');
+                builder.append(v.printNode()).append(" , ");
             }
             for(MethodDeclNode m : ml){
-                builder.append(m.printNode()).append(',');
+                builder.append(m.printNode()).append(" , ");
             }
-            builder.deleteCharAt(builder.length()-1);
-            builder.append(')');
+            builder.delete(builder.length()-3, builder.length());
+            builder.append(" ) ");
 
             return builder.toString();
         }
@@ -100,7 +100,7 @@ public class ASTtree {
         IdentifierNode i;
         @Override
         public String printNode() {
-            return "VarDecl(" + t.printNode() + ',' + i.printNode() + ')';
+            return "VarDecl ( " + t.printNode() + " , " + i.printNode() + " ) ";
         }
     };
 
@@ -113,20 +113,20 @@ public class ASTtree {
         ExpressionNode e;
         @Override
         public String printNode() {
-            StringBuilder builder = new StringBuilder("MethodDecl(");
-            builder.append(t.printNode()).append(',');
-            builder.append(i.printNode()).append(',');
+            StringBuilder builder = new StringBuilder("MethodDecl ( ");
+            builder.append(t.printNode()).append(" , ");
+            builder.append(i.printNode()).append(" , ");
             for(FormalNode f : fl){
-                builder.append(f.printNode()).append(',');
+                builder.append(f.printNode()).append(" , ");
             }
             for(VarDeclNode v : vl){
-                builder.append(v.printNode()).append(',');
+                builder.append(v.printNode()).append(" , ");
             }
             for(StatementNode s : sl){
-                builder.append(s.printNode()).append(',');
+                builder.append(s.printNode()).append(" , ");
             }
 
-            builder.append(e.printNode()).append(')');
+            builder.append(e.printNode()).append(" ) ");
             return builder.toString();
         }
     };
@@ -136,7 +136,7 @@ public class ASTtree {
         IdentifierNode i;
         @Override
         public String printNode() {
-            return "Formal(" + t.printNode() + ',' + i.printNode() + ')';
+            return "Formal ( " + t.printNode() + " , " + i.printNode() + " ) ";
         }
     };
 
@@ -164,13 +164,13 @@ public class ASTtree {
         List<StatementNode> sl;
         @Override
         public String printNode() {
-            String ret = "Block(";
+            String ret = "Block ( ";
             StringBuilder builder = new StringBuilder(ret);
             for(StatementNode s : sl) {
-                builder.append(s.printNode()).append(',');
+                builder.append(s.printNode()).append(" , ");
             }
-            builder.deleteCharAt(builder.length()-1);
-            builder.append(")");
+            builder.delete(builder.length()-3, builder.length());
+            builder.append(" ) ");
             return builder.toString();
         }
     };
@@ -179,7 +179,7 @@ public class ASTtree {
         StatementNode s1,s2;
         @Override
         public String printNode() {
-            return "If(" + e.printNode() + ',' + s1.printNode() + ',' + s2.printNode() + ')';
+            return "If ( " + e.printNode() + " , " + s1.printNode() + " , " + s2.printNode() + " ) ";
         }
     };
     public static class WhileNode extends StatementNode {
@@ -187,14 +187,14 @@ public class ASTtree {
         StatementNode s;
         @Override
         public String printNode() {
-            return "While(" + e.printNode() + ',' + s.printNode() + ')';
+            return "While ( " + e.printNode() + " , " + s.printNode() + " ) ";
         }
     };
     public static class PrintNode extends StatementNode {
         ExpressionNode e;
         @Override
         public String printNode() {
-            return "Print(" + e.printNode() + ')';
+            return "Print ( " + e.printNode() + " ) ";
         }
     };
     public static class AssignNode extends StatementNode {
@@ -202,7 +202,7 @@ public class ASTtree {
         ExpressionNode e;
         @Override
         public String printNode() {
-            return "Assign(" + i.printNode() + ',' + e.printNode() + ')';
+            return "Assign ( " + i.printNode() + " , " + e.printNode() + " ) ";
         }
     };
     public static class ArrayAssignNode extends StatementNode {
@@ -210,7 +210,7 @@ public class ASTtree {
         ExpressionNode e1,e2;
         @Override
         public String printNode() {
-            return "ArrayAssign(" + i.printNode() + ',' + e1.printNode() + ',' + e2.printNode() + ')';
+            return "ArrayAssign ( " + i.printNode() + " , " + e1.printNode() + " , " + e2.printNode() + " ) ";
         }
     };
 
@@ -222,42 +222,42 @@ public class ASTtree {
     public static class AndNode extends BinaryOpNode {
         @Override
         public String printNode() {
-            return "And(" + e1.printNode() + ',' + e2.printNode() + ')';
+            return "And ( " + e1.printNode() + " , " + e2.printNode() + " ) ";
         }
 
     };
     public static class LessThanNode extends BinaryOpNode {
         @Override
         public String printNode() {
-            return "LessThan(" + e1.printNode() + ',' + e2.printNode() + ')';
+            return "LessThan ( " + e1.printNode() + " , " + e2.printNode() + " ) ";
         }
 
     };
     public static class PlusNode extends BinaryOpNode {
         @Override
         public String printNode() {
-            return "Plus(" + e1.printNode() + ',' + e2.printNode() + ')';
+            return "Plus ( " + e1.printNode() + " , " + e2.printNode() + " ) ";
         }
 
     };
     public static class MinusNode extends BinaryOpNode {
         @Override
         public String printNode() {
-            return "Minus(" + e1.printNode() + ',' + e2.printNode() + ')';
+            return "Minus ( " + e1.printNode() + " , " + e2.printNode() + " ) ";
         }
 
     };
     public static class TimeNode extends BinaryOpNode {
         @Override
         public String printNode() {
-            return "Time(" + e1.printNode() + ',' + e2.printNode() + ')';
+            return "Time ( " + e1.printNode() + " , " + e2.printNode() + " ) ";
         }
 
     };
     public static class ArrayLookupNode extends BinaryOpNode {
         @Override
         public String printNode() {
-            return "ArrayLookup(" + e1.printNode() + ',' + e2.printNode() + ')';
+            return "ArrayLookup ( " + e1.printNode() + " , " + e2.printNode() + " ) ";
         }
 
     };
@@ -266,7 +266,7 @@ public class ASTtree {
         ExpressionNode e;
         @Override
         public String printNode() {
-            return "ArrayLength(" + e.printNode() + ')';
+            return "ArrayLength ( " + e.printNode() + " ) ";
         }
     };
 
@@ -276,13 +276,13 @@ public class ASTtree {
         List<ExpressionNode> el;
         @Override
         public String printNode() {
-            String ret =  "Call(" + e.printNode() + ',' + i.printNode();
+            String ret =  "Call ( " + e.printNode() + " , " + i.printNode();
             StringBuilder builder = new StringBuilder(ret);
             for(ExpressionNode enode : el){
-                builder.append(',');
+                builder.append(" , ");
                 builder.append(enode.printNode());
             }
-            builder.append(")");
+            builder.append(" ) ");
             return builder.toString();
         }
     };
@@ -320,7 +320,7 @@ public class ASTtree {
         }
         @Override
         public String printNode() {
-            return "Expression(" + "Identifier:" + s + ')';
+            return "Expression ( " + "Identifier:" + s + " ) ";
         }
     };
 
@@ -336,7 +336,7 @@ public class ASTtree {
         ExpressionNode e;
         @Override
         public String printNode() {
-            return "NewArray(" + e.printNode() + ')';
+            return "NewArray ( " + e.printNode() + " ) ";
         }
     };
 
@@ -344,7 +344,7 @@ public class ASTtree {
         IdentifierNode i;
         @Override
         public String printNode() {
-            return "NewObject(" + i.printNode() + ')';
+            return "NewObject ( " + i.printNode() + " ) ";
         }
     };
 
@@ -352,7 +352,7 @@ public class ASTtree {
         ExpressionNode e;
         @Override
         public String printNode() {
-            return "Not(" + e.printNode() + ')';
+            return "Not ( " + e.printNode() + " ) ";
         }
     };
 

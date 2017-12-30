@@ -41,16 +41,17 @@ public class Main {
         System.out.println(root.printNode());
 
         //show AST in GUI
-        JFrame frame = new JFrame("Antlr AST");
-        JPanel panel = new JPanel();
-        TreeViewer viewr = new TreeViewer(Arrays.asList(
-                parser.getRuleNames()),tree);
-        viewr.setScale(1);//scale a little
-        panel.add(viewr);
-        frame.add(panel);
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setVisible(true);
+        LISPtoTreeView.ShowLISPTree(root.printNode());
+//        JFrame frame = new JFrame("Antlr AST");
+//        JPanel panel = new JPanel();
+//        TreeViewer viewr = new TreeViewer(Arrays.asList(
+//                parser.getRuleNames()),tree);
+//        viewr.setScale(1);//scale a little
+//        panel.add(viewr);
+//        frame.add(panel);
+//        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        frame.setVisible(true);
 
 
     }

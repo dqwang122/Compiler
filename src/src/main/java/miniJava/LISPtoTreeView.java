@@ -3,12 +3,9 @@ package miniJava;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.*;
 
-import miniJava.antlr.ASTtree;
 import org.abego.treelayout.TreeLayout;
 import org.abego.treelayout.util.DefaultConfiguration;
 import org.abego.treelayout.util.DefaultTreeForTreeLayout;
@@ -84,27 +81,6 @@ public class LISPtoTreeView {
 		}
 
 		return heigth * (fm.getHeight());
-	}
-
-
-	private static TreeForTreeLayout<LISPtoTree.LISPTreeNode> getSampleTree(){
-    	LISPtoTree.LISPTreeNode root = new LISPtoTree.LISPTreeNode("rootdsadasfas", getboxwidth("rootdsadasfas"), getboxheight("rootdsadasfas"));
-		LISPtoTree.LISPTreeNode n1 = new LISPtoTree.LISPTreeNode("n1", getboxwidth("n1"), getboxheight("n1"));
-		LISPtoTree.LISPTreeNode n1_1 = new LISPtoTree.LISPTreeNode("n1.1\n(first node)", getboxwidth("n1.1\n(first node)"), getboxheight("n1.1\n(first node)"));
-		LISPtoTree.LISPTreeNode n1_2 = new LISPtoTree.LISPTreeNode("n1.2", getboxwidth("n1.2"), getboxheight("n1.2"));
-		LISPtoTree.LISPTreeNode n1_3 = new LISPtoTree.LISPTreeNode("n1.3\n(last node)", getboxwidth("n1.3\n(last node)"), getboxheight("n1.3\n(last node)"));
-		LISPtoTree.LISPTreeNode n2 = new LISPtoTree.LISPTreeNode("n2", getboxwidth("n2"), getboxheight("n2"));
-		LISPtoTree.LISPTreeNode n2_1 = new LISPtoTree.LISPTreeNode("n2", getboxwidth("n2"), getboxheight("n2"));
-
-		DefaultTreeForTreeLayout<LISPtoTree.LISPTreeNode> tree = new DefaultTreeForTreeLayout<>(root);
-		tree.addChild(root, n1);
-		tree.addChild(n1, n1_1);
-		tree.addChild(n1, n1_2);
-		tree.addChild(n1, n1_3);
-		tree.addChild(root, n2);
-		tree.addChild(n2, n2_1);
-
-		return tree;
 	}
 
 	private static int LISP2Tree(DefaultTreeForTreeLayout<LISPtoTree.LISPTreeNode> tree, String[] parts, int pos, LISPtoTree.LISPTreeNode parent){

@@ -28,6 +28,8 @@ type    :   'int' '[' ']'   # arrayType
         ;
 
 statement   :   '{' ( statement )* '}'                                # blockStat
+            |   '{' ( statement )* '}' '}'  {notifyErrorListeners("Too many parentheses");} #errorpare1
+            |   '{' '{' ( statement )* '}'   {notifyErrorListeners("missing parentheses");} #errorpare2
             |   'if' '(' expression ')' statement 'else' statement      # ifStat
             |   'while' '(' expression ')' statement                    # whileStat
             |   'System.out.println' '(' expression ')' ';'             # printStat
@@ -48,6 +50,8 @@ expression  :   expression  Binary_operators  expression    # binaryExpr
             |   'new' identifier '(' ')'        # newExpr
             |   '!' expression                  # notExpr
             |   '(' expression ')'              # innerExpr
+            |   '(' expression ')' ')'   {notifyErrorListeners("Too many parentheses");}          # errorpare3
+            |   '(' '(' expression ')'    {notifyErrorListeners("missing parentheses");}          # errorpare4
             ;
 
 

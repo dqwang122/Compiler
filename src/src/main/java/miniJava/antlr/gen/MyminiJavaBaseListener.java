@@ -148,6 +148,30 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterErrorpare1(MyminiJavaParser.Errorpare1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitErrorpare1(MyminiJavaParser.Errorpare1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterErrorpare2(MyminiJavaParser.Errorpare2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitErrorpare2(MyminiJavaParser.Errorpare2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIfStat(MyminiJavaParser.IfStatContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -256,6 +280,18 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterErrorpare4(MyminiJavaParser.Errorpare4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitErrorpare4(MyminiJavaParser.Errorpare4Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNumberExpr(MyminiJavaParser.NumberExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -287,6 +323,18 @@ public class MyminiJavaBaseListener implements MyminiJavaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInnerExpr(MyminiJavaParser.InnerExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterErrorpare3(MyminiJavaParser.Errorpare3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitErrorpare3(MyminiJavaParser.Errorpare3Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

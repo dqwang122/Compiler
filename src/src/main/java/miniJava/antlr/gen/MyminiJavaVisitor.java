@@ -82,6 +82,20 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBlockStat(MyminiJavaParser.BlockStatContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code errorpare1}
+	 * labeled alternative in {@link MyminiJavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitErrorpare1(MyminiJavaParser.Errorpare1Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code errorpare2}
+	 * labeled alternative in {@link MyminiJavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitErrorpare2(MyminiJavaParser.Errorpare2Context ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ifStat}
 	 * labeled alternative in {@link MyminiJavaParser#statement}.
 	 * @param ctx the parse tree
@@ -145,6 +159,13 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTrueExpr(MyminiJavaParser.TrueExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code errorpare4}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitErrorpare4(MyminiJavaParser.Errorpare4Context ctx);
+	/**
 	 * Visit a parse tree produced by the {@code numberExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.
 	 * @param ctx the parse tree
@@ -165,6 +186,13 @@ public interface MyminiJavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInnerExpr(MyminiJavaParser.InnerExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code errorpare3}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitErrorpare3(MyminiJavaParser.Errorpare3Context ctx);
 	/**
 	 * Visit a parse tree produced by the {@code newarrayExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.

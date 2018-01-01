@@ -128,6 +128,30 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 */
 	void exitBlockStat(MyminiJavaParser.BlockStatContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code errorpare1}
+	 * labeled alternative in {@link MyminiJavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterErrorpare1(MyminiJavaParser.Errorpare1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code errorpare1}
+	 * labeled alternative in {@link MyminiJavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitErrorpare1(MyminiJavaParser.Errorpare1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code errorpare2}
+	 * labeled alternative in {@link MyminiJavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterErrorpare2(MyminiJavaParser.Errorpare2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code errorpare2}
+	 * labeled alternative in {@link MyminiJavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitErrorpare2(MyminiJavaParser.Errorpare2Context ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ifStat}
 	 * labeled alternative in {@link MyminiJavaParser#statement}.
 	 * @param ctx the parse tree
@@ -236,6 +260,18 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 */
 	void exitTrueExpr(MyminiJavaParser.TrueExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code errorpare4}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterErrorpare4(MyminiJavaParser.Errorpare4Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code errorpare4}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitErrorpare4(MyminiJavaParser.Errorpare4Context ctx);
+	/**
 	 * Enter a parse tree produced by the {@code numberExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.
 	 * @param ctx the parse tree
@@ -271,6 +307,18 @@ public interface MyminiJavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInnerExpr(MyminiJavaParser.InnerExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code errorpare3}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterErrorpare3(MyminiJavaParser.Errorpare3Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code errorpare3}
+	 * labeled alternative in {@link MyminiJavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitErrorpare3(MyminiJavaParser.Errorpare3Context ctx);
 	/**
 	 * Enter a parse tree produced by the {@code newarrayExpr}
 	 * labeled alternative in {@link MyminiJavaParser#expression}.

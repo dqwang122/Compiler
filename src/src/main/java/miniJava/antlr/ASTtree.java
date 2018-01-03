@@ -14,6 +14,7 @@ public class ASTtree {
     public static void PrintSymTabScope() {
         System.out.println("==========The Symbol Table Hierarchy==========");
         mainScope.printSymTab();
+        System.out.println();
         for(SymTabScopeNode n : mainScope.next){
             PrintSymTabScopeLoop(n);
             System.out.println("----------------");
@@ -115,6 +116,8 @@ public class ASTtree {
     public static class ProgramNode extends ASTtreeNode {
         MainClassNode m;
         List<ClassDeclNode> cl;
+        SymTabScopeNode mainScope;
+
         @Override
         public String printNode() {
             StringBuilder builder  = new StringBuilder("Program ( ");
@@ -140,7 +143,7 @@ public class ASTtree {
 
         @Override
         public String TypeCheck(SymTabScopeNode curScope) {
-            m.TypeCheck(ClassScopeTab.get("main"));
+            m.TypeCheck(ClassScopeTab.get("mainclass"));
             for(ClassDeclNode c : cl){
                 c.TypeCheck(ClassScopeTab.get(c.i.s));
             }
@@ -151,6 +154,7 @@ public class ASTtree {
     public static class MainClassNode extends ASTtreeNode {
         IdentifierNode i1, i2;
         StatementNode s;
+        SymTabScopeNode clsScope;
         @Override
         public String printNode() {
             return "MainClass ( " + i1.printNode() + " , " + i2.printNode() + " , " + s.printNode() + " ) ";
@@ -164,12 +168,12 @@ public class ASTtree {
                 semanticerrormsg.add(i1.Getsemanticerr(semanticserrnum, "Duplicate class definition"));
             }
 
-            SymTabScopeNode clsScope = new SymTabScopeNode(curScope);
+            clsScope = new SymTabScopeNode(curScope);
             curScope.next.add(clsScope);
             ClassScopeTab.put(i1.s, clsScope);
 
             SymbolEntry fentry = new SymbolEntry("func", "void");
-            clsScope.insertSym("main", fentry);
+            clsScope.insertSym("mainclass", fentry);
 
             SymTabScopeNode fScope = new SymTabScopeNode(clsScope);
             clsScope.next.add(fScope);
@@ -199,6 +203,7 @@ public class ASTtree {
     public static class ClassDeclSimpleNode extends ClassDeclNode {
         List<VarDeclNode> vl;
         List<MethodDeclNode> ml;
+        SymTabScopeNode clsScope;
         @Override
         public String printNode() {
             StringBuilder builder = new StringBuilder("ClassDeclSimple ( ");
@@ -223,7 +228,7 @@ public class ASTtree {
                 semanticerrormsg.add(i.Getsemanticerr(semanticserrnum, "Duplicate class definition"));
             }
 
-            SymTabScopeNode clsScope = new SymTabScopeNode(curScope);
+            clsScope = new SymTabScopeNode(curScope);
             curScope.next.add(clsScope);
             ClassScopeTab.put(i.s, clsScope);
 
@@ -238,10 +243,10 @@ public class ASTtree {
         @Override
         public String TypeCheck(SymTabScopeNode curScope) {
             for(VarDeclNode v : vl){
-                v.TypeCheck(ClassScopeTab.get(i.s));
+                v.TypeCheck(clsScope);
             }
             for(MethodDeclNode m : ml){
-                m.TypeCheck(ClassScopeTab.get(i.s));
+                m.TypeCheck(clsScope);
             }
             return "null";
         }
@@ -273,7 +278,7 @@ public class ASTtree {
                 semanticerrormsg.add(i.Getsemanticerr(semanticserrnum, "Duplicate class definition"));
             }
 
-            SymTabScopeNode clsScope = new SymTabScopeNode(curScope);
+            clsScope = new SymTabScopeNode(curScope);
             curScope.next.add(clsScope);
             ClassScopeTab.put(i.s, clsScope);
 
@@ -640,11 +645,11 @@ public class ASTtree {
         }
         @Override
         public String TypeCheck(SymTabScopeNode curScope) {
-            if(!e1.TypeCheck(curScope).equals("IntegerType")){
+            if(!e1.TypeCheck(curScope).equals("BooleanType")){
                 semanticserrnum++;
                 semanticerrormsg.add(e1.GetTypeErr(semanticserrnum, "Type Error in Binary Expression", "IntegerType", e1.TypeCheck(curScope)));
             }
-            if(!e2.TypeCheck(curScope).equals("IntegerType")){
+            if(!e2.TypeCheck(curScope).equals("BooleanType")){
                 semanticserrnum++;
                 semanticerrormsg.add(e2.GetTypeErr(semanticserrnum, "Type Error in Binary Expression", "IntegerType", e2.TypeCheck(curScope)));
             }

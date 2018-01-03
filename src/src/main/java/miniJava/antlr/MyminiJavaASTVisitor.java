@@ -207,7 +207,6 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 
 	public ASTtree.ASTtreeNode visitBinaryExpr(MyminiJavaParser.BinaryExprContext ctx) {
 	    ASTtree.BinaryOpNode node = new ASTtree.BinaryOpNode(ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine());
-	    //System.out.println(ctx.Binary_operators().toString());
 	    if(ctx.Binary_operators().toString().equals("&&")){
             node = new ASTtree.AndNode(ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine());
         }

@@ -18,8 +18,6 @@ public class Main {
         // create a lexer that feeds off of input CharStream
         MyminiJavaLexer lexer = new MyminiJavaLexer(CharStreams.fromFileName(filename));
 
-        System.out.println("Lexical analysis successfull");
-
         // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer);
 
@@ -32,15 +30,16 @@ public class Main {
         // print LISP-style tree
 //        System.out.println(tree.toStringTree(parser));
 
+
         // print LISP-style AST
         MyminiJavaASTVisitor ASTvisitor = new MyminiJavaASTVisitor();
         ASTtree.ASTtreeNode root = ASTvisitor.visit(tree);
         System.out.println(root.printNode());
 
         //show AST in GUI
-//        LISPtoTreeView.ShowLISPTree(root.printNode());
+        LISPtoTreeView.ShowLISPTree(root.printNode());
 
-        root.createSymTab(null);
+//        root.createSymTab(null);
 
 
     }
@@ -85,7 +84,7 @@ public class Main {
     }
 
    public static void main(String [] args) throws IOException{
-        String filename = "examples/binarysearch.java";
+        String filename = "examples/factorial.java";
         TestExample(filename);
 //       run("{{a=1;}}{b=1;}}");
    }

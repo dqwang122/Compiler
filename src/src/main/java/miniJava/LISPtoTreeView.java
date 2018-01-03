@@ -128,8 +128,8 @@ public class LISPtoTreeView {
 //		TreeForTreeLayout<LISPtoTree.LISPTreeNode> tree = LISP2Tree(parts, 0);
 
 		// setup the tree layout configuration
-		double gapBetweenLevels = 100;
-		double gapBetweenNodes = 10;
+		double gapBetweenLevels = 80;
+		double gapBetweenNodes = 5;
 		DefaultConfiguration<LISPtoTree.LISPTreeNode> configuration = new DefaultConfiguration<>(gapBetweenLevels, gapBetweenNodes);
 
 		// create the NodeExtentProvider for LISPtoTree.LISPTreeNode nodes

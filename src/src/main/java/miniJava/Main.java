@@ -151,7 +151,7 @@ public class Main {
     }
 
    public static void main(String [] args) throws IOException{
-        String filename = "examples/error/errorfunc.java";
+        String filename = "examples/error/errorarg.java";
 //       String filename = "examples/factorial.java";
         runTemplate(filename);
 //       run("class Factorial{\n" +

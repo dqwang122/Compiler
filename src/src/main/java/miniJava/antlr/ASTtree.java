@@ -391,7 +391,7 @@ public class ASTtree {
         public String TypeCheck(SymTabScopeNode curScope) {
             if(!e.TypeCheck(mscope).equals(t.printNode())){
                 semanticserrnum++;
-                semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Type Error", t.printNode(), curScope.getSymTab(i.s).getKind()));
+                semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Return value error:", t.printNode(), e.TypeCheck(mscope)));
             }
             for(FormalNode f : fl){
                 f.TypeCheck(mscope);
@@ -848,17 +848,24 @@ public class ASTtree {
             HashMap<String, SymbolEntry> fSymTab = clsSymbolTab.next.get(i.s).getSymTab();
 
             String [] fpara = new String[fSymTab.size()];
+            int fnum = 0;
             for(SymbolEntry values : fSymTab.values()){
                 if(values.getKind().equals("arg")){
                     fpara[values.getPos()] = values.getType();
+                    fnum ++;
                 }
             }
             int num = 0;
             for(ExpressionNode enode : el){
                 // args should match
-                if(!enode.TypeCheck(curScope).equals(fpara[num])){
+                if(el.size() != fnum){
                     semanticserrnum++;
-                    semanticerrormsg.add(enode.GetTypeErr(semanticserrnum, "Type Error in Call Object", fpara[num],enode.TypeCheck(curScope)));
+                    semanticerrormsg.add(enode.GetTypeErr(semanticserrnum, "Args Number Error in Call Object", Integer.toString(fnum), Integer.toString(el.size())));
+                    break;
+                }
+                else if(!enode.TypeCheck(curScope).equals(fpara[num])){
+                    semanticserrnum++;
+                    semanticerrormsg.add(enode.GetTypeErr(semanticserrnum, "Args Type Error in Call Object", fpara[num],enode.TypeCheck(curScope)));
                 }
                 num ++;
             }

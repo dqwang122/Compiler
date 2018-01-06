@@ -8,10 +8,12 @@ class F {
 
     public int func(int num){
         int a;
+        boolean t;
         F b;
         b = new F();
-        a = num;
-        return b.get(10);
+        a = b.func(t);
+        a = b.func(num, num);
+        return num;
     }
 
 }

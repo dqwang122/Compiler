@@ -884,6 +884,9 @@ public class ASTtree {
     };
 
     public static class TrueNode extends ExpressionNode {
+        TrueNode(int line, int charpos){
+            super(line, charpos);
+        }
         @Override
         public String printNode() {
             return "True";
@@ -896,7 +899,9 @@ public class ASTtree {
         }
     };
     public static class FalseNode extends ExpressionNode {
-
+        FalseNode(int line, int charpos){
+            super(line, charpos);
+        }
         @Override
         public String printNode() {
             return "False";

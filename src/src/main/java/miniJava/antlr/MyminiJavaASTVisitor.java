@@ -198,7 +198,7 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	}
 
 	public ASTtree.ASTtreeNode visitTrueExpr(MyminiJavaParser.TrueExprContext ctx) {
-	    return new ASTtree.TrueNode();
+	    return new ASTtree.TrueNode(ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine());
 	}
 
 	public ASTtree.ASTtreeNode visitNumberExpr(MyminiJavaParser.NumberExprContext ctx) {
@@ -255,7 +255,7 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	}
 
 	public ASTtree.ASTtreeNode visitFalseExpr(MyminiJavaParser.FalseExprContext ctx) {
-	    return new ASTtree.FalseNode();
+	    return new ASTtree.FalseNode(ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine());
 	}
 
 	public ASTtree.ASTtreeNode visitIdExpr(MyminiJavaParser.IdExprContext ctx) {

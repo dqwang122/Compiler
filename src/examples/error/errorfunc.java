@@ -5,7 +5,6 @@ class Fmain{
 }
 
 class F {
-
     public int func(int num){
         int a;
         F b;
@@ -13,5 +12,4 @@ class F {
         a = num;
         return b.get(10);
     }
-
 }

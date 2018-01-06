@@ -92,6 +92,7 @@ public class Main {
        if(tree != null && !MyErrorListener.IsError()) {
            MyminiJavaASTVisitor ASTvisitor = new MyminiJavaASTVisitor();
            root = ASTvisitor.visit(tree);
+           System.out.println(root.printNode());
            LISPtoTreeView.ShowLISPTree(root.printNode());
        }
        else{
@@ -99,12 +100,11 @@ public class Main {
             return;
        }
 
-//       System.out.println("\n==============================");
-//       ASTtree.PrintSymTabScope();
-
        root.createSymTab(null);
        root.TypeCheck(null);
        MyErrorListener.SemanticListener(ASTtree.semanticserrnum, ASTtree.semanticerrormsg);
+        
+       ASTtree.PrintSymTabScope();
 
     }
 
@@ -163,9 +163,9 @@ public class Main {
     }
 
    public static void main(String [] args) throws IOException{
-//        String filename = "examples/error/errorarg.java";
+//        String filename = "examples/error/errorop.java";
 //       runTemplate(filename);
-       String filename = "examples/bubblesort.java";
+       String filename = "examples/factorial.java";
         runTemplate(filename);
    }
 }

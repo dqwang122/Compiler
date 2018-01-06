@@ -7,11 +7,13 @@ class Fmain{
 class F {
     public int func(int num){
         int a;
-        boolean t;
-        F b;
-        b = new F();
-        a = b.func(t);
-        a = b.func(num, num);
-        return num;
+        boolean b;
+        a = 1;
+        b = true;
+        if(a + b)
+            a = true;
+        else
+            a = false;
+        return a;
     }
 }

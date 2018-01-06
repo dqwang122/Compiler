@@ -62,6 +62,20 @@ public class MyErrorListener {
         }
     }
 
+    public static void SemanticListener(int num, List<String> msg){
+        if(num == 0){
+            System.out.println("Pass Semantic Check!");
+        }
+        else{
+            int n = 1;
+            for(String s:msg){
+                System.err.println("["+Integer.toString(n)+"]" + s);
+                n++;
+            }
+            System.err.println("There are "+ Integer.toString(num)+" semantic error");
+        }
+    }
+
     public static boolean IsError(){
         return errornum != 0;
     }

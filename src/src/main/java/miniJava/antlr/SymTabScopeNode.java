@@ -5,14 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SymTabScopeNode {
+    String Scopename;
     private HashMap<String, SymbolEntry> SymTab;
-    public List<SymTabScopeNode> next;
+    public HashMap<String, SymTabScopeNode> next;
     public SymTabScopeNode parent;
 
-    public SymTabScopeNode(SymTabScopeNode p){
+    public SymTabScopeNode(String name, SymTabScopeNode p){
+        this.Scopename = name;
         this.SymTab = new HashMap<>();
         this.parent = p;
-        this.next = new ArrayList<>();
+        this.next = new HashMap<>();
     }
 
     public SymbolEntry getSymTab(String name) {
@@ -38,9 +40,10 @@ public class SymTabScopeNode {
 
     public void printSymTab(){
         for(String key : SymTab.keySet()){
-            System.out.println(key + "\t" + "kind:" + SymTab.get(key).getKind() + "\ttype:" + SymTab.get(key).getType());
+            System.out.println(key + "\t" + "kind:" + SymTab.get(key).getKind() + "\ttype:" + SymTab.get(key).getType() + "\tpos:" + SymTab.get(key).getPos());
         }
     }
+
 }
 
 

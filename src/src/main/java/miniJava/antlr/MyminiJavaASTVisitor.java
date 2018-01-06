@@ -119,7 +119,7 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	}
 
 	public ASTtree.ASTtreeNode visitIdType(MyminiJavaParser.IdTypeContext ctx) {
-	    return new ASTtree.IdentifierTypeNode();
+	    return new ASTtree.IdentifierTypeNode(ctx.getText());
 	}
 
 	public ASTtree.ASTtreeNode visitBlockStat(MyminiJavaParser.BlockStatContext ctx) {
@@ -174,7 +174,7 @@ public class MyminiJavaASTVisitor extends MyminiJavaBaseVisitor<ASTtree.ASTtreeN
 	}
 
 	public ASTtree.ASTtreeNode visitThisExpr(MyminiJavaParser.ThisExprContext ctx) {
-	    return new ASTtree.ThisNode();
+	    return new ASTtree.ThisNode(ctx.getStart().getLine(), ctx.getStart().getCharPositionInLine());
 	}
 
 	public ASTtree.ASTtreeNode visitArrayExpr(MyminiJavaParser.ArrayExprContext ctx) {

@@ -88,17 +88,24 @@ public class Main {
         }
 
         // begin parsing at goal rule
+        ASTtree.ASTtreeNode root = null;
        if(tree != null && !MyErrorListener.IsError()) {
            MyminiJavaASTVisitor ASTvisitor = new MyminiJavaASTVisitor();
-           ASTtree.ASTtreeNode root = ASTvisitor.visit(tree);
-           System.out.println(root.printNode());
-           root.createSymTab(null);
-//           ASTtree.PrintSymTabScope();
-//           ASTtree.PrintClassScope();
+           root = ASTvisitor.visit(tree);
        }
        else{
             System.err.println("There are syntax errors and the AST tree can't be created!");
+            return;
        }
+
+//       System.out.println("\n==============================");
+//       ASTtree.PrintSymTabScope();
+
+       root.createSymTab(null);
+       root.TypeCheck(null);
+       MyErrorListener.SemanticListener(ASTtree.semanticserrnum, ASTtree.semanticerrormsg);
+
+
 
 
 
@@ -144,8 +151,8 @@ public class Main {
     }
 
    public static void main(String [] args) throws IOException{
-//        String filename = "examples/error/errorsemantic.java";
-       String filename = "examples/factorial.java";
+        String filename = "examples/error/errorfunc.java";
+//       String filename = "examples/factorial.java";
         runTemplate(filename);
 //       run("class Factorial{\n" +
 //               "    public static void main(String[] a){\n" +

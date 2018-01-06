@@ -95,8 +95,13 @@ public class ASTtree {
         public String TypeCheck(SymTabScopeNode curScope){
             SymbolEntry entry;
             while(curScope != null){
-                if((entry = curScope.getSymTab(s)) != null)
-                    return entry.getType();
+                if((entry = curScope.getSymTab(s)) != null){
+                    if(entry.getType().equals("IdentifierType") && !entry.getKind().equals("arg"))
+                        return entry.getKind();
+                    else
+                        return entry.getType();
+                }
+
                 else{
                     curScope = curScope.parent;
                 }
@@ -268,6 +273,13 @@ public class ASTtree {
             clsScope = new SymTabScopeNode(i.s, curScope);
             curScope.next.put(i.s, clsScope);
 
+            for(VarDeclNode v : vl){
+                v.createSymTab(clsScope);
+            }
+            for(MethodDeclNode m : ml){
+                m.createSymTab(clsScope);
+            }
+
             // extends
             if(mainScope.next.containsKey(j.s)){
                 clsScope.setSymTab(mainScope.next.get(j.s).getSymTab());
@@ -275,13 +287,6 @@ public class ASTtree {
             else{
                 semanticserrnum ++;
                 semanticerrormsg.add(j.Getsemanticerr(semanticserrnum, "class identifier does not exist"));
-            }
-
-            for(VarDeclNode v : vl){
-                v.createSymTab(clsScope);
-            }
-            for(MethodDeclNode m : ml){
-                m.createSymTab(clsScope);
             }
 
         }
@@ -298,12 +303,7 @@ public class ASTtree {
         @Override
         public void createSymTab(SymTabScopeNode curScope){
             SymbolEntry varentry;
-            if(t.printNode().equals("IdentifierType")) {
-                IdentifierTypeNode newt = (IdentifierTypeNode)t;
-                varentry = new SymbolEntry("IdentifierType", newt.s);
-            }
-            else
-                varentry = new SymbolEntry("var", t.printNode());
+            varentry = new SymbolEntry("var", t.name);
             if(!curScope.insertSym(i.s, varentry)){
                 semanticserrnum ++;
                 semanticerrormsg.add(i.Getsemanticerr(semanticserrnum, "Duplicate var definition"));
@@ -312,17 +312,9 @@ public class ASTtree {
 
         @Override
         public String TypeCheck(SymTabScopeNode curScope) {
-            if(t.printNode().equals("IdentifierType")){
-                if (!i.TypeCheck(curScope).equals(t.name)) {
-                    semanticserrnum++;
-                    semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Type Error", t.name, i.TypeCheck(curScope)));
-                }
-            }
-            else {
-                if (!i.TypeCheck(curScope).equals(t.printNode())) {
-                    semanticserrnum++;
-                    semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Type Error", t.printNode(), i.TypeCheck(curScope)));
-                }
+            if (!i.TypeCheck(curScope).equals(t.name)) {
+                semanticserrnum++;
+                semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Type Error", t.name, i.TypeCheck(curScope)));
             }
             return "null";
         }
@@ -359,7 +351,7 @@ public class ASTtree {
 
         @Override
         public void createSymTab(SymTabScopeNode curScope) {
-            SymbolEntry mentry = new SymbolEntry(t.printNode(), "func");
+            SymbolEntry mentry = new SymbolEntry(t.name, "func");
             if (!curScope.insertSym(i.s, mentry)) {
                 semanticserrnum++;
                 semanticerrormsg.add(i.Getsemanticerr(semanticserrnum, "Duplicate method definition"));
@@ -370,7 +362,7 @@ public class ASTtree {
 
             int num = 0;
             for(FormalNode f : fl){
-                SymbolEntry argentry = new SymbolEntry("arg", f.t.printNode(), num);
+                SymbolEntry argentry = new SymbolEntry("arg", f.t.name, num);
                 if (!mscope.insertSym(f.i.s, argentry)) {
                     semanticserrnum++;
                     semanticerrormsg.add(f.i.Getsemanticerr(semanticserrnum, "Duplicate arg definition"));
@@ -389,9 +381,9 @@ public class ASTtree {
 
         @Override
         public String TypeCheck(SymTabScopeNode curScope) {
-            if(!e.TypeCheck(mscope).equals(t.printNode())){
+            if(!e.TypeCheck(mscope).equals(t.name)){
                 semanticserrnum++;
-                semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Return value error:", t.printNode(), e.TypeCheck(mscope)));
+                semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Return value error:", t.name, e.TypeCheck(mscope)));
             }
             for(FormalNode f : fl){
                 f.TypeCheck(mscope);
@@ -416,7 +408,7 @@ public class ASTtree {
 
         @Override
         public void createSymTab(SymTabScopeNode curScope){
-            SymbolEntry argentry = new SymbolEntry("arg", t.printNode());
+            SymbolEntry argentry = new SymbolEntry("arg", t.name);
             if (!curScope.insertSym(i.s, argentry)) {
                 semanticserrnum++;
                 semanticerrormsg.add(i.Getsemanticerr(semanticserrnum, "Duplicate arg definition"));
@@ -424,9 +416,9 @@ public class ASTtree {
         }
         @Override
         public String TypeCheck(SymTabScopeNode curScope) {
-            if(!i.TypeCheck(curScope).equals(t.printNode())){
+            if(!i.TypeCheck(curScope).equals(t.name)){
                 semanticserrnum++;
-                semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Type Error", t.printNode(), curScope.getSymTab(i.s).getKind()));
+                semanticerrormsg.add(i.GetTypeErr(semanticserrnum, "Type Error", t.name, curScope.getSymTab(i.s).getKind()));
             }
             return "null";
         }
@@ -438,7 +430,7 @@ public class ASTtree {
     };
     public static class IntArrayTypeNode extends TypeNode {
         IntArrayTypeNode(){
-            this.name = "intarray";
+            this.name = "IntArrayType";
         }
         @Override
         public String printNode() { return "IntArrayType"; }
@@ -452,7 +444,7 @@ public class ASTtree {
     };
     public static class BooleanTypeNode extends TypeNode {
         BooleanTypeNode(){
-            this.name = "bool";
+            this.name = "BooleanType";
         }
         @Override
         public String printNode() { return "BooleanType"; }
@@ -466,7 +458,7 @@ public class ASTtree {
     };
     public static class IntegerTypeNode extends TypeNode {
         IntegerTypeNode(){
-            this.name = "int";
+            this.name = "IntegerType";
         }
 
         @Override
@@ -780,7 +772,7 @@ public class ASTtree {
             }
             else {
                 clsname = e.TypeCheck(curScope);
-                if(!mainScope.next.containsKey(clsname)){
+                if(!mainScope.next.containsKey(clsname) && !clsname.equals("IntArrayType")){
                     semanticserrnum++;
                     semanticerrormsg.add(e.GetTypeErr(semanticserrnum, "Type Error in ArrayLength Expression", clsname, "Not exist class name"));
                 }
@@ -948,7 +940,16 @@ public class ASTtree {
         public void createSymTab(SymTabScopeNode curScope) {}
         @Override
         public String TypeCheck(SymTabScopeNode curScope) {
-            return "this";
+            SymTabScopeNode tmpScope = curScope;
+            while(tmpScope!=null && !mainScope.next.containsKey(tmpScope.Scopename)){
+                tmpScope = tmpScope.parent;
+            }
+            if(tmpScope == null){
+                semanticserrnum++;
+                semanticerrormsg.add(this.GetTypeErr(semanticserrnum, "Type Error in This Object", "this", "Not exist class scope"));
+                return "null";
+            }
+            return tmpScope.Scopename;
         }
     };
 

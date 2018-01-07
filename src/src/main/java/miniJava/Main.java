@@ -103,7 +103,7 @@ public class Main {
        root.createSymTab(null);
        root.TypeCheck(null);
        MyErrorListener.SemanticListener(ASTtree.semanticserrnum, ASTtree.semanticerrormsg);
-        
+
        ASTtree.PrintSymTabScope();
 
     }
